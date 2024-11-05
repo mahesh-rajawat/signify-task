@@ -6,9 +6,8 @@ namespace Signify\ProductCustomAttributeGraphQL\Model\Product;
 use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory;
 use Magento\Catalog\Model\Product\Action as ProductAction;
 
-class UpdateProductToExclusive
+class UpdateProductAttribute
 {
-    private const ATTRIBUTE_VALUE = 'exclusive';
     private const ATTRIBUTE_CODE = 'additional_type';
     private const DEFAULT_STORE = '0';
 
@@ -27,9 +26,10 @@ class UpdateProductToExclusive
      *
      * I am assuming a single store website so updating it for default scope
      *
+     * @param string $value
      * @return void
      */
-    public function execute(): void
+    public function execute(string $value = 'new'): void
     {
         $productCollection = $this->collectionFactory->create();
         $productIds = $productCollection->getAllIds();
@@ -37,7 +37,7 @@ class UpdateProductToExclusive
         // Update all products attribute value
         $this->productAction->updateAttributes(
             $productIds,
-            [self::ATTRIBUTE_CODE => self::ATTRIBUTE_VALUE],
+            [self::ATTRIBUTE_CODE => $value],
             self::DEFAULT_STORE
         );
     }

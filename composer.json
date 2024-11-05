@@ -4,6 +4,7 @@
     "type": "magento2-module",
     "license": "proprietary",
     "minimum-stability": "dev",
+    "version": "1.0.0",
     "require": {
         "php": "~8.1.0||~8.2.0||~8.3.0",
         "magento/module-catalog": "104.0.*",

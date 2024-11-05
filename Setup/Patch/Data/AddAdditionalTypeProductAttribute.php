@@ -11,19 +11,23 @@ use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Framework\Setup\Patch\PatchRevertableInterface;
 use Signify\ProductCustomAttributeGraphQL\Model\Product\Attribute\Source\AdditionalType;
 use Magento\Catalog\Api\Data\ProductAttributeInterface;
+use Signify\ProductCustomAttributeGraphQL\Model\Product\UpdateProductAttribute;
 
 class AddAdditionalTypeProductAttribute implements DataPatchInterface, PatchRevertableInterface
 {
     private const ATTRIBUTE_CODE = 'additional_type';
+
     /**
      * Constructor
      *
      * @param ModuleDataSetupInterface $moduleDataSetup
      * @param EavSetupFactory $eavSetupFactory
+     * @param UpdateProductAttribute $updateProductAttribute
      */
     public function __construct(
         private readonly ModuleDataSetupInterface $moduleDataSetup,
-        private readonly EavSetupFactory $eavSetupFactory
+        private readonly EavSetupFactory $eavSetupFactory,
+        private readonly UpdateProductAttribute $updateProductAttribute
     ) {
     }
 
@@ -33,7 +37,6 @@ class AddAdditionalTypeProductAttribute implements DataPatchInterface, PatchReve
     public function apply(): void
     {
         $this->moduleDataSetup->getConnection()->startSetup();
-        /** @var EavSetup $eavSetup */
         $eavSetup = $this->eavSetupFactory->create(['setup' => $this->moduleDataSetup]);
         $eavSetup->addAttribute(
             ProductAttributeInterface::ENTITY_TYPE_CODE,
@@ -48,7 +51,7 @@ class AddAdditionalTypeProductAttribute implements DataPatchInterface, PatchReve
                 'backend' => '',
                 'sort_order' => '30',
                 'global' => ScopedAttributeInterface::SCOPE_STORE,
-                'default' => null,
+                'default' => '',
                 'visible' => true,
                 'user_defined' => true,
                 'visible_on_front' => false,
@@ -58,7 +61,7 @@ class AddAdditionalTypeProductAttribute implements DataPatchInterface, PatchReve
                 'option' => ''
             ]
         );
-
+        $this->updateProductAttribute->execute();
         $this->moduleDataSetup->getConnection()->endSetup();
     }
 
