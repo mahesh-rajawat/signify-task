@@ -1,0 +1,4 @@
+interface ProductInterface {
+    additional_type: String @doc(description: "Get product additional_type attribute value.")
+        @resolver(class: "Signify\\ProductCustomAttributeGraphQL\\Model\\Resolver\\Product\\AdditionalType")
+}
