@@ -5,8 +5,7 @@
         <arguments>
             <argument name="commands" xsi:type="array">
                 <item name="SetAdditionalType" xsi:type="object">
-                Signify\ProductCustomAttributeGraphQL\Console\Command\SetAdditionalTypeToExclusive
-                </item>
+                    Signify\ProductCustomAttributeGraphQL\Console\Command\SetAdditionalTypeToExclusive</item>
             </argument>
         </arguments>
     </type>

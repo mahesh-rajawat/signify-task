@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Signify\ProductCustomAttributeGraphQL\Console\Command;
 
-use Signify\ProductCustomAttributeGraphQL\Model\Product\UpdateProductAttribute;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Signify\ProductCustomAttributeGraphQL\Model\Product\UpdateProductAttribute;
 
 class SetAdditionalTypeToExclusive extends Command
 {
@@ -31,7 +31,7 @@ class SetAdditionalTypeToExclusive extends Command
         OutputInterface $output
     ): int {
         try {
-            $this->updateProductAttribute->execute('exclusive');
+            $this->updateProductAttribute->execute();
             $output->writeln("All Products updated.");
         } catch (\Exception $e) {
             $output->writeln("<error>{$e->getMessage()}</error>");

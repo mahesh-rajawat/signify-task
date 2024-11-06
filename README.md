@@ -2,7 +2,6 @@ Module ProductCustomAttributeGraphQL
 
 ## Main Functionalities
   -  Add additional_type Product attribute and make it available on graphQl endpoint.
-  - 
 ## Attributes
 
  - Product - Additional Type (additional_type)
