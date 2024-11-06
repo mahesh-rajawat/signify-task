@@ -18,9 +18,9 @@ class UpdateProductAttribute
     private const DEFAULT_BATCH_SIZE = 5000;
 
     /**
-     * @var null
+     * @var string|null
      */
-    private $attributeOptionId = null;
+    private ?string $attributeOptionId = null;
 
     /**
      * @param CollectionFactory $collectionFactory
