@@ -9,6 +9,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Signify\ProductCustomAttributeGraphQL\Model\Product\UpdateProductAttribute;
+use Exception;
 
 class SetAdditionalTypeToExclusive extends Command
 {
@@ -33,7 +34,7 @@ class SetAdditionalTypeToExclusive extends Command
         try {
             $this->updateProductAttribute->execute();
             $output->writeln("All Products updated.");
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $output->writeln("<error>{$e->getMessage()}</error>");
         }
 
